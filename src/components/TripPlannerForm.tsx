@@ -64,38 +64,7 @@ const TripPlannerForm = () => {
       const data = await response.text();
       setResult(data);
     } catch (err) {
-      // For demo purposes, show a sample result
-      const sampleResult = `# Your ${destination} Adventure 🌟
-
-## Day 1: Arrival & Exploration
-
-**Morning:** Arrive and check into your ${budget === 'luxury' ? 'luxury resort' : budget === 'budget' ? 'cozy hostel' : 'comfortable hotel'}.
-
-**Afternoon:** Start with a ${vibe === 'foodie' ? 'food tour through local markets' : vibe === 'adventure' ? 'guided hiking expedition' : vibe === 'history' ? 'walking tour of historic sites' : 'relaxing spa session'}.
-
-- Explore the neighborhood
-- Try local street food
-- Capture stunning sunset photos
-
-## Day 2: Deep Dive
-
-**Full Day Activity:** ${vibe === 'adventure' ? 'Mountain trek with breathtaking views' : vibe === 'foodie' ? 'Cooking class with a local chef' : vibe === 'history' ? 'Museum hopping and ancient ruins' : 'Beach day and wellness retreat'}
-
-> **Pro Tip:** Book your activities in advance during peak season!
-
-## Day 3: Hidden Gems
-
-Discover off-the-beaten-path locations that only locals know about.
-
-- Secret viewpoint for sunrise
-- Family-run restaurant serving authentic cuisine
-- Artisan market for unique souvenirs
-
----
-
-*Generated with ❤️ by Wanderlust AI*`;
-      
-      setResult(sampleResult);
+      setError(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
     } finally {
       setIsLoading(false);
     }
