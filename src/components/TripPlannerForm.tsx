@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { MapPin, Calendar, Sparkles, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -29,8 +29,10 @@ const budgetOptions = [
 const TripPlannerForm = () => {
   const [destination, setDestination] = useState('');
   const [travelDates, setTravelDates] = useState('');
-  const [vibe, setVibe] = useState('');
+  const [travelVibe, setTravelVibe] = useState('');
   const [budget, setBudget] = useState('moderate');
+  
+  const sessionId = useMemo(() => crypto.randomUUID(), []);
   const [isLoading, setIsLoading] = useState(false);
   const [result, setResult] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -44,8 +46,9 @@ const TripPlannerForm = () => {
     const payload = {
       destination,
       travelDates,
-      vibe,
+      travelVibe,
       budget,
+      sessionId,
     };
 
     try {
@@ -117,7 +120,7 @@ const TripPlannerForm = () => {
           <Label className="text-sm font-medium text-foreground">
             What's your vibe?
           </Label>
-          <Select value={vibe} onValueChange={setVibe}>
+          <Select value={travelVibe} onValueChange={setTravelVibe}>
             <SelectTrigger className="h-12 text-base bg-card border-border focus:ring-2 focus:ring-primary/20">
               <SelectValue placeholder="Choose your travel style" />
             </SelectTrigger>
