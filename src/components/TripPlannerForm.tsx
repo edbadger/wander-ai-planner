@@ -64,8 +64,10 @@ const TripPlannerForm = () => {
         throw new Error('Failed to generate itinerary');
       }
 
-      const data = await response.text();
-      setResult(data);
+      const data = await response.json();
+      // Extract output and convert escaped newlines to actual newlines
+      const content = (data.output || JSON.stringify(data)).replace(/\\n/g, '\n');
+      setResult(content);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
     } finally {
