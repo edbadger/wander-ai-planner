@@ -49,7 +49,7 @@ const TripPlannerForm = () => {
     };
 
     try {
-      const response = await fetch('https://hustlebadger.app.n8n.cloud/webhook-test/c4a0a89c-6208-49dd-bb7c-dd9ed483c210', {
+      const response = await fetch('https://hustlebadger.app.n8n.cloud/webhook/c4a0a89c-6208-49dd-bb7c-dd9ed483c210', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
